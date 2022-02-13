@@ -1,0 +1,11 @@
+.App {
+  width: min-content;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+
+  & > p {
+    white-space: nowrap;
+    color: #6d7175;
+  }
+}
