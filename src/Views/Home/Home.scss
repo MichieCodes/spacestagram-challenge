@@ -1,7 +1,12 @@
-h1 {
-  margin-bottom: 0.75rem;
-}
-
-p {
+header {
   margin-bottom: 2rem;
+
+  h1 {
+    margin-bottom: 0.75rem;
+  }
+
+  p {
+    white-space: nowrap;
+    color: #6d7175;
+  }
 }

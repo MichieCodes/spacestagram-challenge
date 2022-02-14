@@ -22,8 +22,11 @@ function Home() {
 
   return (
     <>
-      <h1>Spacetagram</h1>
-      <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
+      <header>
+        <h1>Spacetagram</h1>
+        <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
+      </header>
+      
 
       <section className="post-list">
         {
