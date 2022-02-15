@@ -9,7 +9,7 @@ interface PostProps {
 
 function Post({post} : PostProps) {
   return (
-    <article key={post.date} className={styles['post-list__post']}>
+    <article className={styles['post-list__post']}>
       <img src={getPostImage(post)}/>
 
       <figcaption> 
