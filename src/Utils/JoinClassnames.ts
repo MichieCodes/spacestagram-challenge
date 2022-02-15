@@ -1,5 +1,5 @@
-type Classname = string | false | null | undefined
+type Classname = string | boolean | null | undefined
 
 export function joinClassnames(classList : Classname[]) {
-  return classList.filter((classname) => classname).join(' ')
+  return classList.filter((classname) => classname && classname !== true).join(' ')
 }
