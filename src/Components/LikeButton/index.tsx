@@ -24,7 +24,9 @@ function LikeButton({onClick} : ButtonProps) {
   }
 
   return (
-    <Button onClick={handleClick}>
+    <Button
+      className={liked ? styles['button--liked'] : undefined}
+      onClick={handleClick}>
       <ImHeart className={heartClasses}/>
       <span>{liked ? 'Liked' : 'Like'}</span>
     </Button>
