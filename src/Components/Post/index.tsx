@@ -1,6 +1,8 @@
 import {IPost} from '../../Models/IPost'
 import {getPostImage} from '../../Utils/GetPostImage'
 
+import Button from '../Button'
+
 import styles from './Post.module.scss'
 
 interface PostProps {
@@ -16,9 +18,9 @@ function Post({post} : PostProps) {
         <h3>{post.title} - {post.date}</h3>
         <p>{post.explanation}</p>
 
-        <button onClick={() => console.log(`Liked Post ${post.date}`)}>
+        <Button onClick={() => console.log(`Liked Post ${post.date}`)}>
           Like
-        </button>
+        </Button>
       </figcaption> 
     </article>
   )
