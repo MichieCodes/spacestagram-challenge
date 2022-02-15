@@ -1,22 +1,38 @@
 .heart-icon {
+  flex: 0%;
   opacity: 0;
-  margin-right: 0.75rem;
   fill: #ff133a;
+
+  & ~ span {
+    flex: 0%;
+    transition-property: flex, margin;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+  }
 }
 
 .heart-icon--show {
   animation: show-heart 0.45s ease-in-out forwards;
+
+  & ~ span {
+    flex: 0%;
+    margin-left: 0.75rem;
+  }
 }
 
 .heart-icon--hide {
   animation: hide-heart 0.45s ease-in-out forwards;
+
+  & ~ span {
+    flex: 100%;
+    margin-left: 0rem;
+  }
 }
 
 @keyframes show-heart {
   0% {
-    display: block;
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0);
   }
   75% {
     transform: scale(1.75);
@@ -33,15 +49,10 @@
     transform: scale(1); 
   }
   75% {
-    transform: scale(1.25);
-  }
-  99% {
-    opacity: 0;
-    transform: scale(0.5);
-  }
+    transform: scale(2.75);
+  } 
   100% {
     opacity: 0;
-    position: absolute;
-    display: none;
+    transform: scale(0);
   }
 }

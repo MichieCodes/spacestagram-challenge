@@ -7,12 +7,15 @@ import Button, {ButtonProps} from '../Button'
 
 import styles from './LikeButton.module.scss'
 
-type HeartClass = 'heart-icon--show' | 'heart-icon--hide'
+type HeartState = 'heart-icon--show' | 'heart-icon--hide'
 
 function LikeButton({onClick} : ButtonProps) {
-  const [liked, setLiked] = React.useState<boolean|null>(null)
+  const [liked, setLiked] = React.useState(false)
 
-  const heartClass : HeartClass = liked ? 'heart-icon--show' : 'heart-icon--hide'
+  const heartState : HeartState  = liked ? 'heart-icon--show' : 'heart-icon--hide'
+  const heartClasses : string = joinClassnames([
+    styles['heart-icon'], styles[heartState]
+  ])
 
   const handleClick : MouseEventHandler<HTMLButtonElement> = (e) => {
     onClick && onClick(e)
@@ -22,12 +25,7 @@ function LikeButton({onClick} : ButtonProps) {
 
   return (
     <Button onClick={handleClick}>
-      {
-        liked !== null &&
-          <ImHeart 
-            className={joinClassnames([styles['heart-icon'], styles[heartClass]])}/>
-      }
-
+      <ImHeart className={heartClasses}/>
       <span>{liked ? 'Liked' : 'Like'}</span>
     </Button>
   )
