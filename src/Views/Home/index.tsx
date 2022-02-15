@@ -27,15 +27,17 @@ function Home() {
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
 
-      <section className="post-list">
-        {
-          posts.length ? 
-            posts.map((post) => 
-              <Post key={post.date} post={post}/> 
-            )
-            : 'Loading...'
-        }
-      </section>
+      <main>
+        <section className="post-list">
+          {
+            posts.length ? 
+              posts.map((post) => 
+                <Post key={post.date} post={post}/> 
+              )
+              : 'Loading...'
+          }
+        </section>
+      </main>
     </>
   )
 }
