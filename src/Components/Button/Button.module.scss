@@ -4,13 +4,22 @@
   align-items: center;
   padding: 0.75rem 1.75rem;
   font-size: 1.78rem;
-  outline: 0;
-  border: 2px solid #c4c8cb;
+  border: 2px solid;
   border-radius: 4px;
   background-color: inherit;
-  transition: background-color 0.1s ease-in-out;
+  transition: background-color, outline 0.1s ease-in-out;
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #f6f6f7;
   }
+
+  &:focus {
+    outline: 3px solid;
+    border-color: transparent;
+  }
+
+  &, &:active:focus, &:focus:not(:focus-visible) {
+    outline: 0;
+    border-color: #c4c8cb;
+  }   
 }
