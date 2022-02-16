@@ -1,0 +1,60 @@
+.rocket-loader {
+  & > div {
+    display: flex;
+    position: relative;
+    height: 20vh;
+
+    & > p {
+      display: block;
+      margin: auto 0;
+      width: 100%;
+      text-align: center;
+      color: #6d7175; 
+    }
+    
+    & > span {
+      display: block;
+      position: absolute;
+      width: 100%;
+      bottom: 25%;
+      animation: rocket-launch--x 3s ease-in-out infinite;
+      
+      svg {
+        position: absolute;
+        width: 2.25rem;
+        height: 2.25rem;
+        animation: rocket-launch--y 3s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+@keyframes rocket-launch--x {
+  0% {
+    transform: translateX(0%);
+  }
+  50%, 60% {
+    transform: translateX(calc(100% - 2.25rem));
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes rocket-launch--y {
+  0% {
+    transform: rotate(0deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(45deg) scale(1.5) translateY(-14vh);
+  }
+  50%, 60% {
+    transform: rotate(90deg) translateY(0px);
+  }
+  80% {
+    transform: rotate(-135deg) translateY(-14vh);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0px);
+  }
+}

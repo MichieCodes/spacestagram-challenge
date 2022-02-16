@@ -2,6 +2,7 @@ import React from 'react'
 
 import {IPost} from '../../Models/IPost'
 
+import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
 
 import './Home.scss'
@@ -26,6 +27,8 @@ function Home() {
         <h1>Spacetagram</h1>
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
+
+      <Loading/>
 
       <main>
         <section className="post-list">
