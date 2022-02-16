@@ -28,8 +28,6 @@ function Home() {
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
 
-      <Loading/>
-
       <main>
         <section className="post-list">
           {
@@ -37,7 +35,7 @@ function Home() {
               posts.map((post) => 
                 <Post key={post.date} post={post}/> 
               )
-              : 'Loading...'
+              : <Loading/>
           }
         </section>
       </main>
