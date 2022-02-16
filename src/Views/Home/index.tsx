@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {IPost} from '../../Models/IPost'
+import {sleep} from '../../Utils/Sleep'
 
 import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
@@ -13,6 +14,8 @@ function Home() {
   const loadPosts = React.useCallback(async () => {
     const res = await fetch('../../../data/apod.json')
     const data : IPost[] = await res.json()
+
+    await sleep(2000)
 
     setPost(data)
   }, [])
