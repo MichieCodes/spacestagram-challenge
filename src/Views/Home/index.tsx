@@ -15,7 +15,7 @@ function Home() {
     const res = await fetch('../../../data/apod.json')
     const data : IPost[] = await res.json()
 
-    await sleep(2000)
+    await sleep(3000)
 
     setPost(data)
   }, [])
