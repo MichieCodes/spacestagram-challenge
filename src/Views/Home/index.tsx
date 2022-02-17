@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {IPost} from '../../Models/IPost'
+import {useLoader} from '../../Hooks/UseLoader'
 import {sleep} from '../../Utils/Sleep'
 
 import Loading from '../../Components/Loading'
@@ -10,12 +11,19 @@ import './Home.scss'
 
 function Home() {
   const [posts, setPost] = React.useState<IPost[]>([])
+  const [loading, load] = useLoader()
 
   const loadPosts = React.useCallback(async () => {
-    const res = await fetch('../../../data/apod.json')
-    const data : IPost[] = await res.json()
+    const data : IPost[] = await load(
+      new Promise(async (resolve) => {
+        await sleep(3000)
 
-    await sleep(3000)
+        resolve(
+          fetch('../../../data/apod.json')
+          .then((res) => res.json())
+        )
+      })
+    )
 
     setPost(data)
   }, [])
@@ -34,7 +42,7 @@ function Home() {
       <main>
         <section className="post-list">
           {
-            posts.length ? 
+            !loading ? 
               posts.map((post) => 
                 <Post key={post.date} post={post}/> 
               )
