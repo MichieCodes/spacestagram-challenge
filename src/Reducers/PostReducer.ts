@@ -28,8 +28,7 @@ export function usePostReducer() {
   ) => {
     switch(type) {
       case 'LOAD_POSTS':
-        payload = await load(fetchPosts()) as IPost[]
-        payload.reverse()
+        payload = await load(fetchPosts())
         break
     }
 

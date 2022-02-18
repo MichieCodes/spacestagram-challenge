@@ -5,9 +5,9 @@ export function fetchPosts() : Promise<IPost[]> {
   return new Promise(async (resolve) => {
     await sleep(3000)
 
-    resolve(
-      fetch('../../../data/apod.json')
-      .then((res) => res.json())
-    )
+    const res = await fetch('../../../data/apod.json')
+    const data : IPost[] = await res.json()
+
+    resolve(data.reverse())
   }) 
 }
