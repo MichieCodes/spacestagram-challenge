@@ -26,7 +26,7 @@ function Home() {
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
 
-      <DatePicker/>
+      <DatePicker postDispatch={postDispatch}/>
 
       <main>
         <section className="post-list">
