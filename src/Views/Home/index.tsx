@@ -5,6 +5,7 @@ import {LoadAction, usePostReducer} from '../../Reducers/PostReducer'
 import DatePicker from '../../Components/DatePicker'
 import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
+import RocketAnimation from '../../Components/RocketAnimation'
 
 import './Home.scss'
 
@@ -33,9 +34,11 @@ function Home() {
           {
             loading ? 
               <Loading/>
-              : posts.map((post) => 
-                <Post key={post.date} post={post}/> 
-              )
+              : posts.length ?
+                posts.map((post) => 
+                  <Post key={post.date} post={post}/> 
+                )
+                : <RocketAnimation text={'No Posts Found'}/>
           }
         </section>
       </main>
