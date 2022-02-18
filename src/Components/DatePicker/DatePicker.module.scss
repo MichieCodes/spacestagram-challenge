@@ -1,0 +1,25 @@
+.date-picker {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+  gap: 2rem;
+
+  label {
+    cursor: pointer;
+    white-space: nowrap;
+    color: #6d7175;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-family: inherit;
+    font-size: 1.7rem;
+    color: #6d7175;
+
+    &:focus, &:active:focus {
+      color: #000;
+    }
+  }
+}
