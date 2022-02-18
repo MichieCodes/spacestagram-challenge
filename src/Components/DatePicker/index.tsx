@@ -1,5 +1,7 @@
 import React from 'react'
-import {LoadCustomAction, PostDispatcher} from '../../Reducers/PostReducer'
+
+import {usePostFunctionContext} from '../../Context/PostContext'
+import {LoadCustomAction} from '../../Reducers/PostReducer'
 
 import {startOfMonth, today} from '../../Utils/GetDate'
 
@@ -11,11 +13,8 @@ const MIN_DATE = '2015-01-01'
 const MAX_DATE = today()
 const INIT_DATE = startOfMonth()
 
-interface DatePickerProps {
-  postDispatch: PostDispatcher
-}
-
-function DatePicker({postDispatch} : DatePickerProps) {
+function DatePicker() {
+  const postDispatch = usePostFunctionContext()
   const [date, setDate] = React.useState(INIT_DATE)
 
   const handleClick = React.useCallback(() => {

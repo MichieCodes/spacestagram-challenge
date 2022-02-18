@@ -1,3 +1,5 @@
+import {PostProvider} from './Context/PostContext'
+
 import Home from './Views/Home'
 
 import './App.scss'
@@ -5,7 +7,9 @@ import './App.scss'
 function App() {
   return (
     <div className="app">
-      <Home />
+      <PostProvider>
+        <Home/>
+      </PostProvider>
     </div>
   )
 }
