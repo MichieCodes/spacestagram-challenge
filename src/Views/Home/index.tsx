@@ -1,9 +1,6 @@
 import React from 'react'
 
-import {IPost} from '../../Models/IPost'
-import {fetchPosts} from '../../Services/PostService'
 import {LoadAction, usePostReducer} from '../../Reducers/PostReducer'
-import {useLoader} from '../../Hooks/UseLoader'
 
 import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
@@ -11,13 +8,10 @@ import Post from '../../Components/Post'
 import './Home.scss'
 
 function Home() {
-  const [posts, postDispatch] = usePostReducer()
-  const [loading, load] = useLoader()
+  const [{posts, loading}, postDispatch] = usePostReducer()
 
   const loadPosts = React.useCallback(async () => {
-    const data : IPost[] = await load(fetchPosts())
-
-    postDispatch<LoadAction>('LOAD_POSTS', data)
+    postDispatch<LoadAction>('LOAD_POSTS')
   }, [])
 
   React.useEffect(() => {

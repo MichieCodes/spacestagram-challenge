@@ -1,6 +1,8 @@
 import React from 'react'
 
 import {IPost} from '../Models/IPost'
+import {fetchPosts} from '../Services/PostService'
+import {useLoader} from '../Hooks/UseLoader'
 
 export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
 
@@ -18,13 +20,20 @@ function postReducer(state : PostState, action : PostAction) : PostState {
 
 export function usePostReducer() {
   const [posts, dispatch] = React.useReducer(postReducer, [])
+  const [loading, load] = useLoader()
 
-  const postDispatch = React.useCallback(<T extends PostAction> (
+  const postDispatch = React.useCallback(async <T extends PostAction> (
     type : T['type'],
-    payload : T['payload']
+    payload ?: T['payload']
   ) => {
+    switch(type) {
+      case 'LOAD_POSTS':
+        payload = await load(fetchPosts())
+        break
+    }
+
     dispatch({type, payload} as T)
   }, [])
 
-  return [posts, postDispatch] as const
+  return [{posts, loading}, postDispatch] as const
 }
