@@ -4,11 +4,11 @@ import {joinClassnames} from '../../Utils/JoinClassnames'
 
 export type ButtonProps = ComponentProps<"button">
 
-function Button({children, className, onClick} : ButtonProps) {
+function Button({children, className, ...props} : ButtonProps) {
   return (
     <button
       className={joinClassnames(['button', className])}
-      onClick={onClick}>
+      {...props}>
       {children}
     </button>
   )
