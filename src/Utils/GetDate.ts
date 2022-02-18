@@ -1,3 +1,19 @@
+function dateToString(date : Date) {
+  return date.toJSON().split('T')[0]
+}
+
 export function today() {
-  return new Date().toJSON().split('T')[0]
+  return dateToString(new Date())
+}
+
+export function startOfMonth() {
+  let date = new Date()
+
+  date.setFullYear(
+    date.getFullYear(),
+    date.getMonth(),
+    1
+  )
+
+  return dateToString(date) 
 }
