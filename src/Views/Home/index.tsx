@@ -1,8 +1,9 @@
 import React from 'react'
 
 import {IPost} from '../../Models/IPost'
-import {useLoader} from '../../Hooks/UseLoader'
 import {sleep} from '../../Utils/Sleep'
+import {LoadAction, usePostReducer} from '../../Reducers/PostReducer'
+import {useLoader} from '../../Hooks/UseLoader'
 
 import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
@@ -10,7 +11,7 @@ import Post from '../../Components/Post'
 import './Home.scss'
 
 function Home() {
-  const [posts, setPost] = React.useState<IPost[]>([])
+  const [posts, postDispatch] = usePostReducer()
   const [loading, load] = useLoader()
 
   const loadPosts = React.useCallback(async () => {
@@ -25,7 +26,7 @@ function Home() {
       })
     )
 
-    setPost(data)
+    postDispatch<LoadAction>('LOAD_POSTS', data)
   }, [])
 
   React.useEffect(() => {
@@ -42,11 +43,11 @@ function Home() {
       <main>
         <section className="post-list">
           {
-            !loading ? 
-              posts.map((post) => 
+            loading ? 
+              <Loading/>
+              : posts.map((post) => 
                 <Post key={post.date} post={post}/> 
               )
-              : <Loading/>
           }
         </section>
       </main>
