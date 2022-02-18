@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {IPost} from '../../Models/IPost'
-import {sleep} from '../../Utils/Sleep'
+import {fetchPosts} from '../../Services/PostService'
 import {LoadAction, usePostReducer} from '../../Reducers/PostReducer'
 import {useLoader} from '../../Hooks/UseLoader'
 
@@ -15,16 +15,7 @@ function Home() {
   const [loading, load] = useLoader()
 
   const loadPosts = React.useCallback(async () => {
-    const data : IPost[] = await load(
-      new Promise(async (resolve) => {
-        await sleep(3000)
-
-        resolve(
-          fetch('../../../data/apod.json')
-          .then((res) => res.json())
-        )
-      })
-    )
+    const data : IPost[] = await load(fetchPosts())
 
     postDispatch<LoadAction>('LOAD_POSTS', data)
   }, [])
