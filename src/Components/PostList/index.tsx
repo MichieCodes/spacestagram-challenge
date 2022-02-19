@@ -1,11 +1,11 @@
-import {usePostDataContext} from '../../Context/PostContext'
+import {usePosts} from '../../Context/PostContext'
 
 import Loading from '../Loading'
 import Post from '../Post'
 import RocketAnimation from '../RocketAnimation'
 
 function PostList() {
-  const {posts, loading} = usePostDataContext()
+  const {posts, loading} = usePosts()
 
   return (
     <section className="post-list">

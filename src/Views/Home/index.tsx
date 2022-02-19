@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {usePostFunctionContext} from '../../Context/PostContext'
+import {usePostDispatcher} from '../../Context/PostContext'
 import {LoadAction} from '../../Reducers/PostReducer'
 
 import DatePicker from '../../Components/DatePicker'
@@ -9,7 +9,7 @@ import PostList from '../../Components/PostList'
 import './Home.scss'
 
 function Home() {
-  const postDispatch = usePostFunctionContext()
+  const postDispatch = usePostDispatcher()
 
   const loadPosts = React.useCallback(async () => {
     postDispatch<LoadAction>('LOAD_POSTS')

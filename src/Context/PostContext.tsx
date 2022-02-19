@@ -25,10 +25,10 @@ export function PostProvider({children} : PostProviderProps) {
   )
 }
 
-export function usePostDataContext() {
+export function usePosts() {
   return React.useContext(PostDataContext)!
 }
 
-export function usePostFunctionContext() {
+export function usePostDispatcher() {
   return React.useContext(PostFunctionContext)!
 }
