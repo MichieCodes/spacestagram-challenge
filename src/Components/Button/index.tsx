@@ -7,7 +7,7 @@ export type ButtonProps = ComponentProps<"button">
 function Button({children, className, ...props} : ButtonProps) {
   return (
     <button
-      className={joinClassnames(['button', className])}
+      className={joinClassnames('button', className)}
       {...props}>
       {children}
     </button>

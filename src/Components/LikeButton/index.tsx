@@ -13,9 +13,9 @@ function LikeButton({onClick} : ButtonProps) {
   const [liked, setLiked] = React.useState(false)
 
   const heartState : HeartState  = liked ? 'heart-icon--show' : 'heart-icon--hide'
-  const heartClasses : string = joinClassnames([
+  const heartClasses : string = joinClassnames(
     styles['heart-icon'], styles[heartState]
-  ])
+  )
 
   const handleClick : MouseEventHandler<HTMLButtonElement> = (e) => {
     onClick && onClick(e)
