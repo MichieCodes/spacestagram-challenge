@@ -12,7 +12,7 @@ export function startOfMonth() {
   date.setFullYear(
     date.getFullYear(),
     date.getMonth(),
-    1
+    0
   )
 
   return dateToString(date) 
