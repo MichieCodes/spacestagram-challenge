@@ -46,7 +46,7 @@ export function ToastProvider({children} : ToastProviderProps) {
     <ToastFunctionContext.Provider value={{emitToast, deleteToast}}>
       {children}
       <ToastDataContext.Provider value={toasts}>
-        <ToastList/>
+        {!!toasts.length && <ToastList/>}
       </ToastDataContext.Provider> 
     </ToastFunctionContext.Provider>
   )
