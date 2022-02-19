@@ -8,7 +8,7 @@ export function useTimeout(cb : Function, delay : number) {
   const timeout = React.useRef(-1)
   const time = React.useRef(new Date().getTime())
   const remaining = React.useRef(delay)
-  const [state, setState] = React.useState<TimerState>('running')
+  const [state, setState] = React.useState<TimerState>('stopped')
 
   const _createTimeout = React.useCallback((_delay : number = delay) => {
     clearTimeout(timeout.current)
