@@ -2,6 +2,7 @@ import {IPost} from '../../Models/IPost'
 import {getPostImage} from '../../Utils/GetPostImage'
 
 import LikeButton from '../LikeButton'
+import ShareButton from '../ShareButton'
 
 import styles from './Post.module.scss'
 
@@ -18,7 +19,10 @@ function Post({post} : PostProps) {
         <h3>{post.title} - {post.date}</h3>
         <p>{post.explanation}</p>
 
-        <LikeButton onClick={() => console.log(`Liked Post ${post.date}`)}/>
+        <div>
+          <LikeButton onClick={() => console.log(`Liked Post ${post.date}`)}/>
+          <ShareButton post={post}/>
+        </div>
       </figcaption> 
     </article>
   )
