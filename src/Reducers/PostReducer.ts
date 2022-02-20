@@ -1,23 +1,32 @@
 import React from 'react'
 
 import {IPost} from '../Models/IPost'
-import {fetchPosts} from '../Services/PostService'
+import {ILikeSet} from '../Models/ILikeSet'
+import {fetchLikes, fetchPosts, likePost} from '../Services/PostService'
 import {useLoader} from '../Hooks/UseLoader'
 
 export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
 export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
+export type LikeAction = {type: 'LIKE_POST', payload: string}
 
-type PostState = IPost[]
-type PostAction = LoadAction | LoadCustomAction
+type PostState = {posts: IPost[], likes: ILikeSet}
+type PostAction = LoadAction | LoadCustomAction | LikeAction
+
+const initialState : PostState = {posts: [], likes: {}}
 
 function postReducer(state : PostState, action : PostAction) : PostState {
   switch(action.type) {
     case 'LOAD_POSTS': {
-      return action.payload
+      const likes = fetchLikes()
+      return {posts: action.payload, likes}
     }
     case 'LOAD_CUSTOM_POSTS': {
       if(typeof action.payload === 'string') break
-      return action.payload
+      return {...state, posts: action.payload}
+    }
+    case 'LIKE_POST': {
+      const likes = likePost(action.payload)
+      return {...state, likes}
     }
     default:
       break
@@ -27,7 +36,7 @@ function postReducer(state : PostState, action : PostAction) : PostState {
 }
 
 export function usePostReducer() {
-  const [posts, dispatch] = React.useReducer(postReducer, [])
+  const [posts, dispatch] = React.useReducer(postReducer, initialState)
   const [loading, load] = useLoader()
 
   const postDispatch = React.useCallback(async <T extends PostAction> (
@@ -50,7 +59,7 @@ export function usePostReducer() {
     dispatch(action)
   }, [])
 
-  return [{posts, loading}, postDispatch] as const
+  return [{...posts, loading}, postDispatch] as const
 }
 
 export type PostDispatcher = ReturnType<typeof usePostReducer>[1]
