@@ -22,4 +22,13 @@
       color: #000;
     }
   }
+
+  button {
+    &, &:active:focus, &:focus:not(:focus-visible) {
+      background-color: #fff;
+    }
+    &:hover, &:focus:hover  {
+      background-color: #f6f6f7;
+    }
+  }
 }
