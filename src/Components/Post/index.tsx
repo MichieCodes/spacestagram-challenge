@@ -20,7 +20,7 @@ function Post({post} : PostProps) {
         <p>{post.explanation}</p>
 
         <div>
-          <LikeButton onClick={() => console.log(`Liked Post ${post.date}`)}/>
+          <LikeButton postID={post.date}/>
           <ShareButton post={post}/>
         </div>
       </figcaption> 

@@ -25,7 +25,7 @@ function postReducer(state : PostState, action : PostAction) : PostState {
       return {...state, posts: action.payload}
     }
     case 'LIKE_POST': {
-      const likes = likePost(action.payload)
+      const likes = likePost(state.likes, action.payload)
       return {...state, likes}
     }
     default:
