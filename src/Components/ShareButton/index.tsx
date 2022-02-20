@@ -10,7 +10,7 @@ interface ShareButtonProps {
   post: IPost
 }
 
-type ShareState = 'Share' | 'Shared'
+type ShareState = 'Share' | 'Copied'
 
 function ShareButton({post} : ShareButtonProps) {
   const [text, setText] = React.useState<ShareState>('Share')
@@ -21,7 +21,7 @@ function ShareButton({post} : ShareButtonProps) {
   )
 
   const share = () => {
-    setText('Shared')
+    setText('Copied')
 
     ShareTimer.start()
     emitToast({
