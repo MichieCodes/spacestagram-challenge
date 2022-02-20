@@ -5,18 +5,25 @@ import {fetchPosts} from '../Services/PostService'
 import {useLoader} from '../Hooks/UseLoader'
 
 export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
-export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string}
+export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
 
 type PostState = IPost[]
 type PostAction = LoadAction | LoadCustomAction
 
 function postReducer(state : PostState, action : PostAction) : PostState {
   switch(action.type) {
-    case 'LOAD_POSTS':
+    case 'LOAD_POSTS': {
       return action.payload
+    }
+    case 'LOAD_CUSTOM_POSTS': {
+      if(typeof action.payload === 'string') break
+      return action.payload
+    }
     default:
-      return state
+      break
   }
+
+  return state
 }
 
 export function usePostReducer() {
@@ -34,13 +41,10 @@ export function usePostReducer() {
         action.payload = await load(fetchPosts())
         break
       case 'LOAD_CUSTOM_POSTS':
-        const newAction : LoadAction = {
-          type: 'LOAD_POSTS',
-          payload: await load(fetchPosts(action.payload))
-        }
+        if(typeof action.payload !== 'string') break
 
-        dispatch(newAction)
-        return 
+        action.payload = await load(fetchPosts(action.payload))
+        break 
     }
 
     dispatch(action)
