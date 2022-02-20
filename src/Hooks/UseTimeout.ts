@@ -4,7 +4,7 @@ export type TimerState = 'running' | 'paused' | 'stopped'
 
 const _timePassed = (date : number) => new Date().getTime() - date
 
-export function useTimeout(cb : Function, delay : number) {
+export function useTimeout(cb : Function, delay : number, autoStart : boolean = false) {
   const timeout = React.useRef(-1)
   const time = React.useRef(new Date().getTime())
   const remaining = React.useRef(delay)
@@ -50,6 +50,13 @@ export function useTimeout(cb : Function, delay : number) {
     _createTimeout()
     setState('running')
   }, [_createTimeout])
+
+  React.useEffect(() => {
+    if(!autoStart) return
+
+    start()
+    return cancel
+  }, [autoStart, start, cancel])
 
   return {start, pause, resume, cancel, state}
 }
