@@ -3,6 +3,7 @@ import React from 'react'
 import {IPost} from '../../Models/IPost'
 import {useToastEmitter} from '../../Context/ToastContext'
 import {useTimeout} from '../../Hooks/UseTimeout'
+import {copyToClipboard} from '../../Utils/CopyToClipboard'
 
 import Button from '../Button'
 
@@ -11,6 +12,8 @@ interface ShareButtonProps {
 }
 
 type ShareState = 'Share' | 'Copied'
+
+const _getPostUrl = (id : string) => `${location.origin}/posts/${id}`
 
 function ShareButton({post} : ShareButtonProps) {
   const [text, setText] = React.useState<ShareState>('Share')
@@ -21,6 +24,7 @@ function ShareButton({post} : ShareButtonProps) {
   )
 
   const share = () => {
+    copyToClipboard(_getPostUrl(post.date))
     setText('Copied')
 
     ShareTimer.start()
