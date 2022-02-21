@@ -5,6 +5,22 @@
   justify-content: space-between;
   gap: 2rem;
 
+  @media screen and (max-width: 460px) {
+    gap: 0.75rem;
+  }
+
+  @media screen and (max-width: 420px) {
+    flex-direction: column;
+
+    input {
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+
   label {
     cursor: pointer;
     white-space: nowrap;
@@ -24,6 +40,8 @@
   }
 
   button {
+    text-align: center;
+
     &, &:active:focus, &:focus:not(:focus-visible) {
       background-color: #fff;
     }
