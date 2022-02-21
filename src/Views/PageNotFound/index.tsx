@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {BsFillArrowLeftCircleFill as BsArrow} from 'react-icons/bs'
 
 import Button from '../../Components/Button'
@@ -11,12 +12,14 @@ function PageNotFound() {
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
 
-      <Button style={{marginBottom: '2rem'}}>
-        <BsArrow/>
-        <span style={{marginLeft: '0.75rem'}}>
-          Back To Home
-        </span>
-      </Button>
+      <Link to='/'>
+        <Button style={{marginBottom: '2rem'}}>
+          <BsArrow/>
+          <span style={{marginLeft: '0.75rem'}}>
+            Back To Home
+          </span>
+        </Button>
+      </Link>
 
       <main>
         <section className="post-list">

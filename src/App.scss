@@ -27,6 +27,11 @@ main {
   }
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .button, .input {
   cursor: pointer;
   display: flex;

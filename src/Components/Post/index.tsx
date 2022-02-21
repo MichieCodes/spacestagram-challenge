@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 import {IPost} from '../../Models/IPost'
 import {getPostImage} from '../../Utils/GetPostImage'
 
@@ -18,7 +20,12 @@ function Post({post} : PostProps) {
         alt={post.title}/>
 
       <figcaption> 
-        <h3>{post.title} - {post.date}</h3>
+        <h3>
+          <Link to={`/posts/${post.date}`}>
+            {post.title} - {post.date}
+          </Link>
+        </h3>
+
         <p>{post.explanation}</p>
 
         <div>

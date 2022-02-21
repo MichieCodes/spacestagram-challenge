@@ -1,5 +1,5 @@
 import React from 'react'
-import {useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import {BsFillArrowLeftCircleFill as BsArrow} from 'react-icons/bs'
 
 import {IPost} from '../../Models/IPost'
@@ -31,12 +31,14 @@ function SinglePost() {
         <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
       </header>
 
-      <Button style={{marginBottom: '2rem'}}>
-        <BsArrow/>
-        <span style={{marginLeft: '0.75rem'}}>
-          View All Posts
-        </span>
-      </Button>
+      <Link to='/'>
+        <Button style={{marginBottom: '2rem'}}>
+          <BsArrow/>
+          <span style={{marginLeft: '0.75rem'}}>
+            View All Posts
+          </span>
+        </Button>
+      </Link>
 
       <main>
         <section className="post-list">
