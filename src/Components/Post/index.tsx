@@ -13,7 +13,9 @@ interface PostProps {
 function Post({post} : PostProps) {
   return (
     <article className={styles['post-list__post']}>
-      <img src={getPostImage(post)}/>
+      <img
+        src={getPostImage(post)}
+        alt={post.title}/>
 
       <figcaption> 
         <h3>{post.title} - {post.date}</h3>
