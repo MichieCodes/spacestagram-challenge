@@ -2,7 +2,7 @@ import React from 'react'
 
 import {IPost} from '../Models/IPost'
 import {ILikeSet} from '../Models/ILikeSet'
-import {fetchLikes, fetchPosts, likePost} from '../Services/PostService'
+import {fetchLikes, fetchPosts, saveLikes} from '../Services/PostService'
 import {useLoader} from '../Hooks/UseLoader'
 
 export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
@@ -25,7 +25,13 @@ function postReducer(state : PostState, action : PostAction) : PostState {
       return {...state, posts: action.payload}
     }
     case 'LIKE_POST': {
-      const likes = likePost(state.likes, action.payload)
+      const postID = action.payload
+      const likes = {
+        ...state.likes,
+        [postID]: !state.likes[postID]
+      }
+
+      saveLikes(likes)
       return {...state, likes}
     }
     default:

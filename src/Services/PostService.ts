@@ -31,10 +31,6 @@ export function fetchLikes() : ILikeSet {
   return likes
 }
 
-export function likePost(likes : ILikeSet, postID : string) : ILikeSet {
-  likes = {...likes, [postID]: !likes[postID]}
-
+export function saveLikes(likes : ILikeSet) {
   localStorage.setItem('spacestagram_likes', JSON.stringify(likes))
-
-  return likes
 }
