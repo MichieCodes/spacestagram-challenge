@@ -1,4 +1,5 @@
 import React from 'react'
+import {useParams} from 'react-router-dom'
 import {BsFillArrowLeftCircleFill as BsArrow} from 'react-icons/bs'
 
 import {IPost} from '../../Models/IPost'
@@ -13,10 +14,11 @@ import RocketAnimation from '../../Components/RocketAnimation'
 function SinglePost() {
   const [post, setPost] = React.useState<IPost>()
   const [loading, load] = useLoader()
+  const {postID} = useParams()
 
   const loadPosts = React.useCallback(async () => {
-    setPost(await load(fetchPost('2022-02-11')))
-  }, [])
+    setPost(await load(fetchPost(postID)))
+  }, [postID])
 
   React.useEffect(() => {
     loadPosts() 
