@@ -14,6 +14,12 @@ export async function fetchPosts(startDate : string = startOfMonth()) {
     .reverse()
 }
 
+export async function fetchPost(date : string = startOfMonth()) {
+  const data : IPost[] = await fetchPosts(date)
+
+  return data.slice(-1)[0]
+}
+
 export function fetchLikes() : ILikeSet {
   const likes : ILikeSet = JSON.parse(
     localStorage.getItem('spacestagram_likes') || '{}'
