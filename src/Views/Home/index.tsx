@@ -6,8 +6,6 @@ import {LoadAction} from '../../Reducers/PostReducer'
 import DatePicker from '../../Components/DatePicker'
 import PostList from '../../Components/PostList'
 
-import './Home.scss'
-
 function Home() {
   const postDispatch = usePostDispatcher()
 
