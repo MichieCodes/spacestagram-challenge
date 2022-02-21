@@ -9,7 +9,7 @@ export function today() {
 export function startOfMonth() {
   let date = new Date()
 
-  date.setFullYear(
+  date = new Date(
     date.getFullYear(),
     date.getMonth(),
     1
