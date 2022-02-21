@@ -1,23 +1,26 @@
 import {IPost} from "../Models/IPost"
 import {ILikeSet} from "../Models/ILikeSet"
-import {startOfMonth} from "../Utils/GetDate"
+import {startOfMonth, today} from "../Utils/GetDate"
 import {sleep} from "../Utils/Sleep"
 
-export async function fetchPosts(startDate : string = startOfMonth()) {
-  await sleep(3000)
+const BASE_URL = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true'
 
-  const res = await fetch('../../../data/apod.json')
+export async function fetchPosts(startDate : string = startOfMonth()) {
+  const res = await fetch(`${BASE_URL}&start_date=${startDate}`)
   const data : IPost[] = await res.json()
 
-  return data
-    .filter((post) => post.date >= startDate)
-    .reverse()
+  await sleep(2000)
+
+  return data.reverse()
 }
 
-export async function fetchPost(date : string = startOfMonth()) {
-  const data : IPost[] = await fetchPosts(date)
+export async function fetchPost(date : string = today()) {
+  const res = await fetch(`${BASE_URL}&date=${date}`)
+  const data : IPost = await res.json()
 
-  return data.slice(-1)[0]
+  await sleep(2500)
+
+  return data
 }
 
 export function fetchLikes() : ILikeSet {
