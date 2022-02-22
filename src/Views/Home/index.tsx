@@ -1,22 +1,7 @@
-import React from 'react'
-
-import {usePostDispatcher} from '../../Context/PostContext'
-import {LoadAction} from '../../Reducers/PostReducer'
-
 import DatePicker from '../../Components/DatePicker'
 import PostList from '../../Components/PostList'
 
 function Home() {
-  const postDispatch = usePostDispatcher()
-
-  const loadPosts = React.useCallback(async () => {
-    postDispatch<LoadAction>('LOAD_POSTS')
-  }, [])
-
-  React.useEffect(() => {
-    loadPosts() 
-  }, [])
-
   return (
     <>
       <header>

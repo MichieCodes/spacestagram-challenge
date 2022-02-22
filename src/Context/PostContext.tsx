@@ -2,7 +2,7 @@ import React from 'react'
 
 import {IPost} from '../Models/IPost'
 import {ILikeSet} from '../Models/ILikeSet'
-import {PostDispatcher, usePostReducer} from '../Reducers/PostReducer'
+import {LoadAction, PostDispatcher, usePostReducer} from '../Reducers/PostReducer'
 
 type PostFunctionType = PostDispatcher
 type PostDataType = {
@@ -20,6 +20,14 @@ const PostDataContext = React.createContext<PostDataType|null>(null)
 
 export function PostProvider({children} : PostProviderProps) {
   const [postState, postDispatch] = usePostReducer()
+
+  const loadPosts = React.useCallback(async () => {
+    postDispatch<LoadAction>('LOAD_POSTS')
+  }, [])
+
+  React.useEffect(() => {
+    loadPosts() 
+  }, [])
 
   return (
     <PostFunctionContext.Provider value={postDispatch}>
