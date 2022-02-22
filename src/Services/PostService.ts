@@ -9,7 +9,7 @@ export async function fetchPosts(startDate : string = startOfMonth()) {
   const res = await fetch(`${BASE_URL}&start_date=${startDate}`)
   const data : IPost[] = await res.json()
 
-  await sleep(2000)
+  await sleep(500)
 
   return data.reverse()
 }
@@ -18,7 +18,7 @@ export async function fetchPost(date : string = today()) {
   const res = await fetch(`${BASE_URL}&date=${date}`)
   const data : IPost = await res.json()
 
-  await sleep(2500)
+  await sleep(1000)
 
   return data
 }
