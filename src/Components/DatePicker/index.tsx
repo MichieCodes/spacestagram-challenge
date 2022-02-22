@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {usePostDispatcher} from '../../Context/PostContext'
+import {usePostDispatcher, usePosts} from '../../Context/PostContext'
 import {LoadCustomAction} from '../../Reducers/PostReducer'
 
 import {startOfMonth, today} from '../../Utils/GetDate'
@@ -14,8 +14,9 @@ const MAX_DATE = today()
 const INIT_DATE = startOfMonth()
 
 function DatePicker() {
+  const {startDate} = usePosts()
   const postDispatch = usePostDispatcher()
-  const [date, setDate] = React.useState(INIT_DATE)
+  const [date, setDate] = React.useState(startDate || INIT_DATE)
 
   const handleClick = React.useCallback(() => {
     postDispatch<LoadCustomAction>('LOAD_CUSTOM_POSTS', date)

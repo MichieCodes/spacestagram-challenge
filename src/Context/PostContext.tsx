@@ -1,13 +1,9 @@
 import React from 'react'
 
-import {IPost} from '../Models/IPost'
-import {ILikeSet} from '../Models/ILikeSet'
-import {LoadAction, PostDispatcher, usePostReducer} from '../Reducers/PostReducer'
+import {LoadAction, PostDispatcher, PostState, usePostReducer} from '../Reducers/PostReducer'
 
 type PostFunctionType = PostDispatcher
-type PostDataType = {
-  posts: IPost[],
-  likes: ILikeSet,
+type PostDataType = PostState & {
   loading: boolean
 }
 

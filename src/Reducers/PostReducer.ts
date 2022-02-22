@@ -8,17 +8,18 @@ import {useLoader} from '../Hooks/UseLoader'
 export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
 export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
 export type LikeAction = {type: 'LIKE_POST', payload: string}
+export type StartDateAction = {type: 'SET_START_DATE', payload: string}
 
-type PostState = {posts: IPost[], likes: ILikeSet}
-type PostAction = LoadAction | LoadCustomAction | LikeAction
+export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string}
+export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction
 
-const initialState : PostState = {posts: [], likes: {}}
+const initialState : PostState = {posts: [], likes: {}, startDate: ''}
 
 function postReducer(state : PostState, action : PostAction) : PostState {
   switch(action.type) {
     case 'LOAD_POSTS': {
       const likes = fetchLikes()
-      return {posts: action.payload, likes}
+      return {...state, posts: action.payload, likes}
     }
     case 'LOAD_CUSTOM_POSTS': {
       if(typeof action.payload === 'string') break
@@ -33,6 +34,9 @@ function postReducer(state : PostState, action : PostAction) : PostState {
 
       saveLikes(likes)
       return {...state, likes}
+    }
+    case 'SET_START_DATE': {
+      return {...state, startDate: action.payload}
     }
     default:
       break
@@ -58,6 +62,7 @@ export function usePostReducer() {
       case 'LOAD_CUSTOM_POSTS':
         if(typeof action.payload !== 'string') break
 
+        dispatch({type: 'SET_START_DATE', payload: action.payload})
         action.payload = await load(fetchPosts(action.payload))
         break 
     }
