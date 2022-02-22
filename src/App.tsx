@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import {PostProvider} from './Context/PostContext'
+import {getBasename} from './Utils/GetBasename'
 
 import Home from './Views/Home'
 import SinglePost from './Views/SinglePost'
@@ -12,10 +13,10 @@ function App() {
   return (
     <div className="app">
       <PostProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={getBasename()}>
           <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/posts/:postID" element={<SinglePost/>} />
+            <Route path="/" element={<Home/>}/>
+            <Route path="/posts/:postID" element={<SinglePost/>}/>
             <Route path="*" element={<PageNotFound/>}/>
           </Routes>
         </BrowserRouter>
