@@ -63,7 +63,7 @@ export function usePostReducer() {
         if(typeof action.payload !== 'string') break
 
         dispatch({type: 'SET_START_DATE', payload: action.payload})
-        action.payload = await load(fetchPosts(action.payload))
+        action.payload = await load(fetchPosts(action.payload, 'asc'))
         break 
     }
 

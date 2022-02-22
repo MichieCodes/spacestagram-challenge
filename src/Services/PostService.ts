@@ -5,13 +5,16 @@ import {sleep} from "../Utils/Sleep"
 
 const BASE_URL = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true'
 
-export async function fetchPosts(startDate : string = startOfMonth()) {
+export async function fetchPosts(
+  startDate : string = startOfMonth(),
+  order : 'asc' | 'desc' = 'desc'
+) {
   const res = await fetch(`${BASE_URL}&start_date=${startDate}`)
   const data : IPost[] = await res.json()
 
   await sleep(500)
 
-  return data.reverse()
+  return order === 'asc' ? data : data.reverse()
 }
 
 export async function fetchPost(date : string = today()) {
