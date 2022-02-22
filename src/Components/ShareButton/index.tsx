@@ -1,6 +1,7 @@
 import React from 'react'
 
 import {IPost} from '../../Models/IPost'
+import {getBasename} from '../../Utils/GetBasename'
 import {useToastEmitter} from '../../Context/ToastContext'
 import {useTimeout} from '../../Hooks/UseTimeout'
 import {copyToClipboard} from '../../Utils/CopyToClipboard'
@@ -13,7 +14,7 @@ interface ShareButtonProps {
 
 type ShareState = 'Share' | 'Copied'
 
-const _getPostUrl = (id : string) => `${location.origin}/posts/${id}`
+const _getPostUrl = (id : string) => `${location.origin}/${getBasename()}/posts/${id}`
 
 function ShareButton({post} : ShareButtonProps) {
   const [text, setText] = React.useState<ShareState>('Share')
