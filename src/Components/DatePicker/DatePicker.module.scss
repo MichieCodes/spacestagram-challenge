@@ -40,6 +40,7 @@
   }
 
   button {
+    justify-content: center;
     text-align: center;
 
     &, &:active:focus, &:focus:not(:focus-visible) {
