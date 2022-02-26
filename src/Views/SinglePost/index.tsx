@@ -46,7 +46,7 @@ function SinglePost() {
             loading ? 
               <Loading/>
               : post ?
-                <Post key={post.date} post={post}/> 
+                <Post post={post}/> 
                 : <RocketAnimation text={'No Posts Found'}/>
           }
         </section> 
