@@ -1,0 +1,12 @@
+.load-button {
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+
+  &, &:active:focus, &:focus:not(:focus-visible) {
+    background-color: #fff;
+  }
+  &:hover, &:focus:hover  {
+    background-color: #f6f6f7;
+  }
+}
