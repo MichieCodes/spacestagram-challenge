@@ -17,13 +17,9 @@ const PostDataContext = React.createContext<PostDataType|null>(null)
 export function PostProvider({children} : PostProviderProps) {
   const [postState, postDispatch] = usePostReducer()
 
-  const loadPosts = React.useCallback(async () => {
-    postDispatch<LoadAction>('LOAD_POSTS')
-  }, [])
-
   React.useEffect(() => {
-    loadPosts() 
-  }, [])
+    postDispatch<LoadAction>('LOAD_POSTS')
+  }, [postDispatch])
 
   return (
     <PostFunctionContext.Provider value={postDispatch}>
