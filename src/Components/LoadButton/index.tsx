@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {PageAction} from '../../Reducers/PostReducer'
+import {usePostDispatcher} from '../../Context/PostContext'
 import {useTimeout} from '../../Hooks/UseTimeout'
 
 import Button from '../Button'
@@ -10,6 +12,7 @@ type LoadState = 'Load More' | 'Loading...'
 
 function LoadButton() {
   const [text, setText] = React.useState<LoadState>('Load More')
+  const postDispatch = usePostDispatcher()
   const LoadTimer = useTimeout(
     React.useCallback(() => setText('Load More'), []),
     1200
@@ -17,6 +20,7 @@ function LoadButton() {
 
   const loadMore = () => {
     setText('Loading...')
+    postDispatch<PageAction>('NEXT_PAGE')
     LoadTimer.start()
   }
 

@@ -1,3 +1,5 @@
+import React from 'react'
+
 import {usePosts} from '../../Context/PostContext'
 
 import Loading from '../Loading'
@@ -6,7 +8,11 @@ import RocketAnimation from '../RocketAnimation'
 import LoadButton from '../LoadButton'
 
 function PostList() {
-  const {posts, loading} = usePosts()
+  const {posts : allPosts, loading, page} = usePosts()
+  const posts = React.useMemo(() => 
+    allPosts.slice(0, 10 * (page + 1)),
+    [allPosts, page]
+  )
 
   return (
     <section className="post-list">
@@ -20,7 +26,10 @@ function PostList() {
                   <Post key={post.date} post={post}/> 
                 )
               }
-              <LoadButton/>
+              {
+                posts.length != allPosts.length &&
+                  <LoadButton/>
+              }
             </>
             : <RocketAnimation text={'No Posts Found'}/>
       }

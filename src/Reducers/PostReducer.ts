@@ -9,21 +9,22 @@ export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
 export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
 export type LikeAction = {type: 'LIKE_POST', payload: string}
 export type StartDateAction = {type: 'SET_START_DATE', payload: string}
+export type PageAction = {type: 'NEXT_PAGE', payload: undefined}
 
-export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string}
-export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction
+export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, page: number}
+export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction | PageAction
 
-const initialState : PostState = {posts: [], likes: {}, startDate: ''}
+const initialState : PostState = {posts: [], likes: {}, startDate: '', page: 0}
 
 function postReducer(state : PostState, action : PostAction) : PostState {
   switch(action.type) {
     case 'LOAD_POSTS': {
       const likes = fetchLikes()
-      return {...state, posts: action.payload, likes}
+      return {...state, posts: action.payload, likes, page: 0}
     }
     case 'LOAD_CUSTOM_POSTS': {
       if(typeof action.payload === 'string') break
-      return {...state, posts: action.payload}
+      return {...state, posts: action.payload, page: 0}
     }
     case 'LIKE_POST': {
       const postID = action.payload
@@ -37,6 +38,12 @@ function postReducer(state : PostState, action : PostAction) : PostState {
     }
     case 'SET_START_DATE': {
       return {...state, startDate: action.payload}
+    }
+    case 'NEXT_PAGE': {
+      if(state.posts.length <= 10 * (state.page + 1))
+        return state
+
+      return {...state, page: state.page + 1}
     }
     default:
       break
