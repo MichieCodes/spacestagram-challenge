@@ -6,6 +6,7 @@ import {IPost} from '../../Models/IPost'
 import {fetchPost} from '../../Services/PostService'
 import {useLoader} from '../../Hooks/UseLoader'
 
+import Layout from '../../Components/Layout'
 import Button from '../../Components/Button'
 import Loading from '../../Components/Loading'
 import Post from '../../Components/Post'
@@ -25,12 +26,7 @@ function SinglePost() {
   }, [])
 
   return (
-    <>
-      <header>
-        <h1>Spacetagram</h1>
-        <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
-      </header>
-
+    <Layout>
       <Link to='/'>
         <Button style={{marginBottom: '2rem'}}>
           <BsArrow/>
@@ -40,18 +36,16 @@ function SinglePost() {
         </Button>
       </Link>
 
-      <main>
-        <section className="post-list">
-          {
-            loading ? 
-              <Loading/>
-              : post ?
-                <Post post={post}/> 
-                : <RocketAnimation text={'No Posts Found'}/>
-          }
-        </section> 
-      </main>
-    </>
+      <section className="post-list">
+        {
+          loading ? 
+            <Loading/>
+            : post ?
+              <Post post={post}/> 
+              : <RocketAnimation text={'No Posts Found'}/>
+        }
+      </section> 
+    </Layout>
   )
 }
 

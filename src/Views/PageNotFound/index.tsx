@@ -1,17 +1,13 @@
 import {Link} from 'react-router-dom'
 import {BsFillArrowLeftCircleFill as BsArrow} from 'react-icons/bs'
 
+import Layout from '../../Components/Layout'
 import Button from '../../Components/Button'
 import RocketAnimation from '../../Components/RocketAnimation'
 
 function PageNotFound() {
   return (
-    <>
-      <header>
-        <h1>Spacetagram</h1>
-        <p>Brought to you by NASA's Astronomy Photo of the Day (APOD) API</p>
-      </header>
-
+    <Layout>
       <Link to='/'>
         <Button style={{marginBottom: '2rem'}}>
           <BsArrow/>
@@ -21,12 +17,10 @@ function PageNotFound() {
         </Button>
       </Link>
 
-      <main>
-        <section className="post-list">
-          <RocketAnimation text={'Page Could Not Be Found'}/>
-        </section> 
-      </main>
-    </>
+      <section className="post-list">
+        <RocketAnimation text={'Page Could Not Be Found'}/>
+      </section> 
+    </Layout>
   )
 }
 
