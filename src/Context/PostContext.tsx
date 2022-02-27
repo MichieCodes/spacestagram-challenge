@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {LoadAction, PostDispatcher, PostState, usePostReducer} from '../Reducers/PostReducer'
+import {PostDispatcher, PostState, usePostReducer} from '../Reducers/PostReducer'
 
 type PostFunctionType = PostDispatcher
 type PostDataType = PostState & {
@@ -18,7 +18,7 @@ export function PostProvider({children} : PostProviderProps) {
   const [postState, postDispatch] = usePostReducer()
 
   React.useEffect(() => {
-    postDispatch<LoadAction>('LOAD_POSTS')
+    postDispatch('LOAD_POSTS')
   }, [postDispatch])
 
   return (

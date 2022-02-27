@@ -1,18 +1,21 @@
 import React from 'react'
 
 import {IPost} from '../Models/IPost'
+import {TupleFromInterface} from '../Utils/TuplesFromInterface'
 import {ILikeSet} from '../Models/ILikeSet'
 import {fetchLikes, fetchPosts, saveLikes} from '../Services/PostService'
 import {useLoader} from '../Hooks/UseLoader'
 
-export type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
-export type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
-export type LikeAction = {type: 'LIKE_POST', payload: string}
-export type StartDateAction = {type: 'SET_START_DATE', payload: string}
-export type PageAction = {type: 'NEXT_PAGE', payload: undefined}
+type LoadAction = {type: 'LOAD_POSTS', payload: IPost[]}
+type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
+type LikeAction = {type: 'LIKE_POST', payload: string}
+type StartDateAction = {type: 'SET_START_DATE', payload: string}
+type PageAction = {type: 'NEXT_PAGE', payload: undefined}
 
 export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, page: number}
 export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction | PageAction
+
+type PostDispatchParameters = TupleFromInterface<PostAction, ['type', 'payload']> 
 
 const initialState : PostState = {posts: [], likes: {}, startDate: '', page: 0}
 
@@ -52,15 +55,15 @@ function postReducer(state : PostState, action : PostAction) : PostState {
   return state
 }
 
+
 export function usePostReducer() {
   const [posts, dispatch] = React.useReducer(postReducer, initialState)
   const [loading, load] = useLoader()
 
-  const postDispatch = React.useCallback(async <T extends PostAction> (
-    type : T['type'],
-    payload ?: T['payload']
+  const postDispatch = React.useCallback(async (
+    ...args : [PostDispatchParameters[0]] | PostDispatchParameters
   ) => {
-    let action = {type, payload} as T
+    let action = {type : args[0], payload : args[1]} as PostAction
 
     switch(action.type) {
       case 'LOAD_POSTS':

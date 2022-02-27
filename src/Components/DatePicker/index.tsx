@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {usePostDispatcher, usePosts} from '../../Context/PostContext'
-import {LoadCustomAction} from '../../Reducers/PostReducer'
 
 import {startOfMonth, today} from '../../Utils/GetDate'
 
@@ -19,7 +18,7 @@ function DatePicker() {
   const [date, setDate] = React.useState(startDate || INIT_DATE)
 
   const handleClick = React.useCallback(() => {
-    postDispatch<LoadCustomAction>('LOAD_CUSTOM_POSTS', date)
+    postDispatch('LOAD_CUSTOM_POSTS', date)
   }, [date, postDispatch])
 
   return (

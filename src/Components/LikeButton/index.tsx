@@ -3,7 +3,6 @@ import {ImHeart} from 'react-icons/im'
 
 import {joinClassnames} from '../../Utils/JoinClassnames'
 import {usePostDispatcher, usePosts} from '../../Context/PostContext'
-import {LikeAction} from '../../Reducers/PostReducer'
 
 import Button from '../Button'
 
@@ -26,7 +25,7 @@ function LikeButton({postID} : LikeButtonProps) {
   )
 
   const handleClick = () => {
-    postDispatcher<LikeAction>('LIKE_POST', postID)
+    postDispatcher('LIKE_POST', postID)
   }
 
   return (

@@ -1,6 +1,5 @@
 import React from 'react'
 
-import {PageAction} from '../../Reducers/PostReducer'
 import {usePostDispatcher} from '../../Context/PostContext'
 import {useTimeout} from '../../Hooks/UseTimeout'
 
@@ -20,7 +19,7 @@ function LoadButton() {
 
   const loadMore = () => {
     setText('Loading...')
-    postDispatch<PageAction>('NEXT_PAGE')
+    postDispatch('NEXT_PAGE')
     LoadTimer.start()
   }
 
