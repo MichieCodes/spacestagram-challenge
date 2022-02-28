@@ -1,4 +1,4 @@
-import {useToasts} from '../../Context/ToastContext'
+import {useToasts} from '~/Context/ToastContext'
 
 import Toast from '../Toast'
 

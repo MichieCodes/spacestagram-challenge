@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {PostDispatcher, PostState, usePostReducer} from '../Reducers/PostReducer'
+import {PostDispatcher, PostState, usePostReducer} from '~/Reducers/PostReducer'
 
 type PostFunctionType = PostDispatcher
 type PostDataType = PostState & {

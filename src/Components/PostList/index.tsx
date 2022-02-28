@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {usePosts} from '../../Context/PostContext'
+import {usePosts} from '~/Context/PostContext'
 
 import Loading from '../Loading'
 import Post from '../Post'

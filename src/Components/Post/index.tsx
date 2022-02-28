@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 
-import {IPost} from '../../Models/IPost'
-import {getPostImage} from '../../Utils/GetPostImage'
+import {IPost} from '~/Models/IPost'
+import {getPostImage} from '~/Utils/GetPostImage'
 
 import LikeButton from '../LikeButton'
 import ShareButton from '../ShareButton'

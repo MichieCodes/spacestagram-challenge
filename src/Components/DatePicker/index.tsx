@@ -1,8 +1,8 @@
 import React from 'react'
 
-import {usePostDispatcher, usePosts} from '../../Context/PostContext'
+import {usePostDispatcher, usePosts} from '~/Context/PostContext'
 
-import {startOfMonth, today} from '../../Utils/GetDate'
+import {startOfMonth, today} from '~/Utils/GetDate'
 
 import Button from '../Button'
 

@@ -1,6 +1,6 @@
 import {ComponentProps} from 'react'
 
-import {joinClassnames} from '../../Utils/JoinClassnames'
+import {joinClassnames} from '~/Utils/JoinClassnames'
 
 export type ButtonProps = ComponentProps<"button">
 

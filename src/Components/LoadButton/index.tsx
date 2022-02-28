@@ -1,7 +1,7 @@
 import React from 'react'
 
-import {usePostDispatcher} from '../../Context/PostContext'
-import {useTimeout} from '../../Hooks/UseTimeout'
+import {usePostDispatcher} from '~/Context/PostContext'
+import {useTimeout} from '~/Hooks/UseTimeout'
 
 import Button from '../Button'
 

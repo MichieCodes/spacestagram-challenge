@@ -1,9 +1,9 @@
 import React from 'react'
 import {nanoid} from 'nanoid'
 
-import {IToastMessage} from '../Models/IToastMessage'
+import {IToastMessage} from '~/Models/IToastMessage'
 
-import ToastList from '../Components/ToastList'
+import ToastList from '~/Components/ToastList'
 
 type ToastDataType = IToastMessage[]
 type ToastFunctionType = {

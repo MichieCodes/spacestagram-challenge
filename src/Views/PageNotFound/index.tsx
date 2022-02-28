@@ -1,9 +1,9 @@
 import {Link} from 'react-router-dom'
 import {BsFillArrowLeftCircleFill as BsArrow} from 'react-icons/bs'
 
-import Layout from '../../Components/Layout'
-import Button from '../../Components/Button'
-import RocketAnimation from '../../Components/RocketAnimation'
+import Layout from '~/Components/Layout'
+import Button from '~/Components/Button'
+import RocketAnimation from '~/Components/RocketAnimation'
 
 function PageNotFound() {
   return (

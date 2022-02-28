@@ -1,9 +1,9 @@
 import React, {AnimationEventHandler} from 'react'
 
-import {IToastMessage} from '../../Models/IToastMessage'
-import {useToastEmitter} from '../../Context/ToastContext'
-import {joinClassnames} from '../../Utils/JoinClassnames'
-import {useTimeout} from '../../Hooks/UseTimeout'
+import {IToastMessage} from '~/Models/IToastMessage'
+import {useToastEmitter} from '~/Context/ToastContext'
+import {joinClassnames} from '~/Utils/JoinClassnames'
+import {useTimeout} from '~/Hooks/UseTimeout'
 
 import styles from './Toast.module.scss'
 

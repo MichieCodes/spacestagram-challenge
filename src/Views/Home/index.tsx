@@ -1,6 +1,6 @@
-import Layout from '../../Components/Layout'
-import DatePicker from '../../Components/DatePicker'
-import PostList from '../../Components/PostList'
+import Layout from '~/Components/Layout'
+import DatePicker from '~/Components/DatePicker'
+import PostList from '~/Components/PostList'
 
 function Home() {
   return (

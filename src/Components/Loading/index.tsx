@@ -1,4 +1,4 @@
-import {useEllipsis} from '../../Hooks/UseEllipsis'
+import {useEllipsis} from '~/Hooks/UseEllipsis'
 
 import RocketAnimation from '../RocketAnimation'
 

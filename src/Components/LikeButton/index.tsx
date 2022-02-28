@@ -1,8 +1,8 @@
 import React from 'react'
 import {ImHeart} from 'react-icons/im'
 
-import {joinClassnames} from '../../Utils/JoinClassnames'
-import {usePostDispatcher, usePosts} from '../../Context/PostContext'
+import {joinClassnames} from '~/Utils/JoinClassnames'
+import {usePostDispatcher, usePosts} from '~/Context/PostContext'
 
 import Button from '../Button'
 

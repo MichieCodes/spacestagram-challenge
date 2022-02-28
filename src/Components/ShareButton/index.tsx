@@ -1,10 +1,10 @@
 import React from 'react'
 
-import {IPost} from '../../Models/IPost'
-import {getBasename} from '../../Utils/GetBasename'
-import {useToastEmitter} from '../../Context/ToastContext'
-import {useTimeout} from '../../Hooks/UseTimeout'
-import {copyToClipboard} from '../../Utils/CopyToClipboard'
+import {IPost} from '~/Models/IPost'
+import {getBasename} from '~/Utils/GetBasename'
+import {useToastEmitter} from '~/Context/ToastContext'
+import {useTimeout} from '~/Hooks/UseTimeout'
+import {copyToClipboard} from '~/Utils/CopyToClipboard'
 
 import Button from '../Button'
 
