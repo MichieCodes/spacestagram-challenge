@@ -1,0 +1,22 @@
+{
+  "name": "shopify-frontend-challenge",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "packageManager": "^npm@6.14.10",
+  "engines": {
+    "npm": ">=6.14.10",
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "turbo": "^1.1.4"
+  }
+}
