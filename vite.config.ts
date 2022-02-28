@@ -12,6 +12,11 @@ function getBasename() {
 export default defineConfig({
   base: getBasename(),
   plugins: [react()],
+  resolve: {
+    alias: {
+      "~": resolve(__dirname, "src"),
+    },
+  },
   build: {
     rollupOptions: {
       input: {
