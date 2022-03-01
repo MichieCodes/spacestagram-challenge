@@ -5,6 +5,7 @@ import {TupleFromInterface, ActionParameters} from '../Utils/TuplesFromInterface
 import {ILikeSet} from '../Models/ILikeSet'
 import {fetchLikes, fetchPosts, saveLikes} from '../Services/PostService'
 import {useLoader} from '../Hooks/UseLoader'
+import {daysSince, startOfMonth} from '~/Utils/GetDate'
 
 type LoadAction = {type: 'LOAD_POSTS', payload?: IPost[]}
 type LoadCustomAction = {type: 'LOAD_CUSTOM_POSTS', payload: string | IPost[]}
@@ -12,12 +13,18 @@ type LikeAction = {type: 'LIKE_POST', payload: string}
 type StartDateAction = {type: 'SET_START_DATE', payload: string}
 type PageAction = {type: 'NEXT_PAGE', payload: undefined}
 
-export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, page: number}
+export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, page: number, totalPosts: number}
 export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction | PageAction
 
 type PostDispatchParameters = ActionParameters<TupleFromInterface<PostAction, ['type', 'payload']>>
 
-const initialState : PostState = {posts: [], likes: {}, startDate: '', page: 0}
+const initialState : PostState = {
+  posts: [],
+  likes: {},
+  startDate: '',
+  page: 0,
+  totalPosts: daysSince(startOfMonth()) + 1
+}
 
 function postReducer(state : PostState, action : PostAction) : PostState {
   switch(action.type) {
@@ -42,7 +49,11 @@ function postReducer(state : PostState, action : PostAction) : PostState {
       return {...state, likes}
     }
     case 'SET_START_DATE': {
-      return {...state, startDate: action.payload}
+      return {
+        ...state,
+        startDate: action.payload,
+        totalPosts: daysSince(action.payload) + 1
+      }
     }
     case 'NEXT_PAGE': {
       if(state.posts.length <= 10 * (state.page + 1))
