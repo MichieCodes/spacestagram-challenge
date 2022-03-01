@@ -21,3 +21,17 @@ export function startOfMonth() {
 
   return dateToString(date) 
 }
+
+export function relativeDate(date : string, days : number) {
+  if(!days) return date
+
+  let newDate = stringToDate(date)
+
+  newDate = new Date(
+    newDate.getFullYear(),
+    newDate.getMonth(),
+    newDate.getDay() + (days - 1)
+  )
+
+  return dateToString(newDate)
+}
