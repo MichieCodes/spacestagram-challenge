@@ -2,6 +2,10 @@ function dateToString(date : Date) {
   return date.toJSON().split('T')[0]
 }
 
+function stringToDate(date : string) {
+  return new Date(date + '00:00:00')
+}
+
 export function today() {
   return dateToString(new Date())
 }
