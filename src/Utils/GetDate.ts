@@ -3,7 +3,7 @@ function dateToString(date : Date) {
 }
 
 function stringToDate(date : string) {
-  return new Date(date + '00:00:00')
+  return new Date(date + 'T00:00:00')
 }
 
 export function today() {
