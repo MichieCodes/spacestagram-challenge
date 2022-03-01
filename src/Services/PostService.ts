@@ -1,15 +1,23 @@
 import {IPost} from "../Models/IPost"
 import {ILikeSet} from "../Models/ILikeSet"
 import {startOfMonth, today} from "../Utils/GetDate"
+import {buildUrl} from "~/Utils/BuildUrl"
 import {sleep} from "../Utils/Sleep"
 
 const BASE_URL = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=true'
 
 export async function fetchPosts(
   startDate : string = startOfMonth(),
+  endDate ?: string,
   order : 'asc' | 'desc' = 'desc'
 ) {
-  const res = await fetch(`${BASE_URL}&start_date=${startDate}`)
+  const url = buildUrl(
+    BASE_URL,
+    ['start_date', startDate],
+    !!endDate && ['end_date', endDate]
+  )
+
+  const res = await fetch(url)
   const data : IPost[] = await res.json()
 
   await sleep(500)
