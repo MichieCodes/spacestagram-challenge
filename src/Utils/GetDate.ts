@@ -22,6 +22,13 @@ export function startOfMonth() {
   return dateToString(date) 
 }
 
+export function daysSince(date : string) {
+  const milliseconds = 24 * 60 * 60 * 1000
+  let difference = new Date().getTime() - stringToDate(date).getTime()
+  
+  return  Math.round(difference / milliseconds) 
+}
+
 export function relativeDate(date : string, days : number) {
   if(!days) return date
 
