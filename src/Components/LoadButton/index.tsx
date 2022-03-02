@@ -16,7 +16,7 @@ function LoadButton() {
   const postDispatch = usePostDispatcher()
   const LoadTimer = useTimeout(
     React.useCallback(() => setText('Load More'), []),
-    1200
+    2000
   )
   const pagePayload = React.useMemo(() => {
     const date = posts?.slice(-1)[0]?.date
@@ -37,7 +37,8 @@ function LoadButton() {
   return (
     <Button
       className={styles['load-button']}
-      onClick={loadMore}>
+      onClick={loadMore}
+      disabled={LoadTimer.state == 'running'}>
       {text}
     </Button>
   )

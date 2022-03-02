@@ -8,11 +8,7 @@ import RocketAnimation from '../RocketAnimation'
 import LoadButton from '../LoadButton'
 
 function PostList() {
-  const {posts : allPosts, loading, page, totalPosts} = usePosts()
-  const posts = React.useMemo(() => 
-    allPosts.slice(0, 10 * (page + 1)),
-    [allPosts, page]
-  )
+  const {posts, loading, totalPosts} = usePosts()
 
   return (
     <section className="post-list">
@@ -27,7 +23,7 @@ function PostList() {
                 )
               }
               {
-                // posts.length != allPosts.length &&
+                posts.length != totalPosts &&
                   <LoadButton/>
               }
             </>
