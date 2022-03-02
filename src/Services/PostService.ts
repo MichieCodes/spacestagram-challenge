@@ -1,6 +1,6 @@
 import {IPost} from "../Models/IPost"
 import {ILikeSet} from "../Models/ILikeSet"
-import {startOfMonth, today} from "../Utils/GetDate"
+import {daysSince, relativeDate, startOfMonth, today} from "../Utils/GetDate"
 import {buildUrl} from "~/Utils/BuildUrl"
 import {sleep} from "../Utils/Sleep"
 
@@ -8,8 +8,8 @@ const BASE_URL = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&thumbs=tr
 
 export async function fetchPosts(
   startDate : string = startOfMonth(),
-  endDate ?: string,
-  order : 'asc' | 'desc' = 'desc'
+  order : 'asc' | 'desc' = 'desc',
+  endDate ?: string
 ) {
   const url = buildUrl(
     BASE_URL,
@@ -30,6 +30,19 @@ export async function fetchPost(date : string = today()) {
   const data : IPost = await res.json()
 
   await sleep(1000)
+
+  return data
+}
+
+export async function fetchNextPosts(
+  startDate : string = today(),
+  count : number = 10,
+  order : 'asc' | 'desc' = 'desc'
+) {
+  startDate = order === 'desc' ? relativeDate(startDate, -count) : startDate
+  const endDate = daysSince(startDate) <= count ? '' : relativeDate(startDate, count)
+
+  const data : IPost[] = await fetchPosts(startDate, order, endDate)
 
   return data
 }
