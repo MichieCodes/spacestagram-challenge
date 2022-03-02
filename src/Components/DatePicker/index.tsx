@@ -2,7 +2,7 @@ import React from 'react'
 
 import {usePostDispatcher, usePosts} from '~/Context/PostContext'
 
-import {startOfMonth, today} from '~/Utils/GetDate'
+import {today} from '~/Utils/GetDate'
 
 import Button from '../Button'
 
@@ -10,12 +10,11 @@ import styles from './DatePicker.module.scss'
 
 const MIN_DATE = '2015-01-01'
 const MAX_DATE = today()
-const INIT_DATE = startOfMonth()
 
 function DatePicker() {
   const {startDate} = usePosts()
   const postDispatch = usePostDispatcher()
-  const [date, setDate] = React.useState(startDate || INIT_DATE)
+  const [date, setDate] = React.useState(startDate || '')
 
   const handleClick = React.useCallback(() => {
     postDispatch('LOAD_CUSTOM_POSTS', date)
