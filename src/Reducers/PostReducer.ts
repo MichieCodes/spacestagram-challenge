@@ -19,7 +19,7 @@ type PageAction = {
   payload: {date: string, count: number, order: 'asc' | 'desc'}
 }
 
-export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, page: number, totalPosts: number}
+export type PostState = {posts: IPost[], likes: ILikeSet, startDate: string, totalPosts: number}
 export type PostAction = LoadAction | LoadCustomAction | LikeAction | StartDateAction | PageAction
 
 type PostDispatchParameters = ActionParameters<TupleFromInterface<PostAction, ['type', 'payload']>>
@@ -28,7 +28,6 @@ const initialState : PostState = {
   posts: [],
   likes: {},
   startDate: '',
-  page: 0,
   totalPosts: daysSince(startOfMonth()) + 1
 }
 
@@ -42,7 +41,6 @@ function postReducer(state : PostState, action : PostAction) : PostState {
         ...state,
         posts: action.payload,
         likes,
-        page: 0,
         totalPosts: daysSince('2015-01-01')
       }
     }
@@ -50,7 +48,6 @@ function postReducer(state : PostState, action : PostAction) : PostState {
       if(typeof action.payload === 'string') break
 
       let {posts, append} = action.payload
-      const page = append ? state.page : 0
 
       if(append) {
         posts = [
@@ -59,7 +56,7 @@ function postReducer(state : PostState, action : PostAction) : PostState {
         ]
       }
       
-      return {...state, posts, page}
+      return {...state, posts}
     }
     case 'LIKE_POST': {
       const postID = action.payload
@@ -77,12 +74,6 @@ function postReducer(state : PostState, action : PostAction) : PostState {
         startDate: action.payload,
         totalPosts: daysSince(action.payload) + 1
       }
-    }
-    case 'NEXT_PAGE': {
-      if(state.posts.length <= 10 * (state.page + 1))
-        return state
-
-      return {...state, page: state.page + 1}
     }
     default:
       break
