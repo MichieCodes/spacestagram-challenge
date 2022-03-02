@@ -26,18 +26,15 @@ export function daysSince(date : string) {
   const milliseconds = 24 * 60 * 60 * 1000
   let difference = new Date().getTime() - stringToDate(date).getTime()
   
-  return  Math.round(difference / milliseconds) 
+  return Math.round(difference / milliseconds) 
 }
 
 export function relativeDate(date : string, days : number) {
   if(!days) return date
 
   let newDate = stringToDate(date)
-
-  newDate = new Date(
-    newDate.getFullYear(),
-    newDate.getMonth(),
-    newDate.getDay() + (days - 1)
+  newDate.setDate(
+    newDate.getDate() + days - (days > 0 ? 1 : -1)
   )
 
   return dateToString(newDate)
