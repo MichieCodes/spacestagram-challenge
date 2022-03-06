@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">Spacetagram</h1>
+  <h1 align="center">Spacestagram</h1>
 
   <p align="center">
     A NASA Astronomy Photo of the Day Viewer
