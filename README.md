@@ -37,4 +37,4 @@ npm i
 ## Usage
 
 - Run `npm run csr:dev` for a dev server. Navigate to `http://localhost:3000/`. Thanks to Vite's hmr, the app will automatically reload if you change any of the source files.
-- Run `npm run deploy --scope=@csr/spacestagram` to easily deploy the site to github pages. Before running this command ensure that you have changed the homepage in your package.json
+- Run `npm run deploy --scope=@spacestagram/csr` to easily deploy the site to github pages. Before running this command ensure that you have changed the homepage in your package.json

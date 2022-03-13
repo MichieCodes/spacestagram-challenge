@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "turbo run dev --parallel",
-    "csr:dev": "turbo run dev --scope=@csr/spacestagram"
+    "csr:dev": "turbo run dev --scope=@spacestagram/csr"
   },
   "keywords": [],
   "author": "",
